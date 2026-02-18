@@ -14,32 +14,85 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling with improved dark mode compatibility
+# Custom CSS - Cohesive bright red/rose theme
 st.markdown("""
     <style>
+    /* ===== BACKGROUNDS ===== */
+    [data-testid="stAppViewContainer"] {
+        background-color: #FFF0F0 !important;
+    }
     .main {
-        background-color: #0e1117;
+        background-color: #FFF0F0;
     }
     .stApp {
         max-width: 1400px;
         margin: 0 auto;
+        background-color: #FFF0F0 !important;
     }
-    h1 {
-        color: #4fc3f7;
-        font-weight: 700;
+    [data-testid="stHeader"] {
+        background-color: #FFD6D6 !important;
+        border-bottom: 2px solid #FF8A8A;
     }
-    h2 {
-        color: #81c784;
-        font-weight: 600;
+
+    /* ===== SIDEBAR ===== */
+    [data-testid="stSidebar"] {
+        background-color: #FFD6D6 !important;
+        border-right: 2px solid #FF8A8A;
     }
-    h3 {
-        color: #e0e0e0;
+    [data-testid="stSidebarContent"] {
+        background-color: #FFD6D6 !important;
+    }
+    [data-testid="stSidebar"] *  {
+        color: #5a0000 !important;
+    }
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        color: #8B0000 !important;
+    }
+    [data-testid="stSidebar"] .stRadio label {
+        color: #5a0000 !important;
         font-weight: 500;
     }
+
+    /* ===== MAIN CONTENT TEXT — force dark on light bg ===== */
+    .main p, .main span, .main div,
+    .main label, .main li,
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] li,
+    [data-testid="stMarkdownContainer"] span {
+        color: #3a0000 !important;
+    }
+    h1 { color: #8B0000 !important; font-weight: 700; }
+    h2 { color: #B22222 !important; font-weight: 600; }
+    h3 { color: #CC3333 !important; font-weight: 500; }
+
+    /* ===== INPUT FIELDS — white bg, dark text ===== */
+    .stNumberInput input,
+    input[type="number"],
+    input[type="text"] {
+        background-color: #FFFFFF !important;
+        color: #3a0000 !important;
+        border: 1.5px solid #FF8A8A !important;
+        border-radius: 6px !important;
+    }
+    .stNumberInput input:focus {
+        border: 1.5px solid #CC0000 !important;
+        box-shadow: 0 0 0 2px rgba(204,0,0,0.15) !important;
+    }
+    /* Input labels */
+    .stNumberInput label,
+    .stTextInput label,
+    [data-testid="stWidgetLabel"] {
+        color: #5a0000 !important;
+        font-weight: 500 !important;
+    }
+
+    /* ===== CUSTOM BOXES ===== */
     .success-box {
         padding: 20px;
         border-radius: 10px;
-        background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+        background: linear-gradient(135deg, #CC0000 0%, #8B0000 100%);
         color: white;
         text-align: center;
         margin: 20px 0;
@@ -47,38 +100,77 @@ st.markdown("""
     .info-box {
         padding: 15px;
         border-radius: 8px;
-        background-color: #1e3a5f;
-        border-left: 4px solid #4fc3f7;
+        background-color: #FFE8E8;
+        border-left: 4px solid #FF4444;
         margin: 10px 0;
-        color: #e0e0e0;
+        color: #5a0000 !important;
     }
     .warning-box {
         padding: 15px;
         border-radius: 8px;
-        background-color: #3e2723;
-        border-left: 4px solid #ff6f00;
+        background-color: #FFF3E0;
+        border-left: 4px solid #FF8C00;
         margin: 10px 0;
-        color: #e0e0e0;
+        color: #4a2000 !important;
     }
+
+    /* ===== METRIC CARDS ===== */
     div[data-testid="stMetricValue"] {
         font-size: 28px;
         font-weight: 700;
+        color: #8B0000 !important;
     }
-    /* Improve input field visibility */
-    .stNumberInput input {
-        background-color: #1e1e1e !important;
-        color: #ffffff !important;
-        border: 1px solid #4fc3f7 !important;
+    div[data-testid="stMetricLabel"] {
+        color: #CC3333 !important;
     }
-    /* Button styling */
+    [data-testid="stMetric"] {
+        background-color: #FFFFFF !important;
+        border: 1px solid #FFAAAA;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(180,0,0,0.1);
+    }
+
+    /* ===== BUTTONS ===== */
     .stButton>button {
-        background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
-        color: white;
-        border: none;
-        font-weight: 600;
+        background: linear-gradient(135deg, #CC0000 0%, #8B0000 100%) !important;
+        color: white !important;
+        border: none !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #0d47a1 0%, #01579b 100%);
+        background: linear-gradient(135deg, #FF2222 0%, #CC0000 100%) !important;
+        box-shadow: 0 4px 12px rgba(180,0,0,0.3) !important;
+    }
+
+    /* ===== TABS ===== */
+    .stTabs [data-baseweb="tab"] {
+        color: #8B0000 !important;
+    }
+    .stTabs [aria-selected="true"] {
+        border-bottom: 2px solid #CC0000 !important;
+        color: #CC0000 !important;
+    }
+
+    /* ===== DATAFRAME ===== */
+    [data-testid="stDataFrame"] {
+        border: 1px solid #FFAAAA;
+        border-radius: 8px;
+    }
+
+    /* ===== FILE UPLOADER & MISC WIDGETS ===== */
+    [data-testid="stFileUploader"] label,
+    [data-testid="stFileUploader"] p,
+    .stSelectbox label,
+    .stMultiSelect label {
+        color: #5a0000 !important;
+    }
+
+    /* ===== SUBHEADERS & section text ===== */
+    [data-testid="stSubheader"],
+    .stSubheader {
+        color: #8B0000 !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -835,7 +927,7 @@ elif menu == "📊 Model Performance":
             height=400,
             plot_bgcolor='rgba(0,0,0,0)',
             paper_bgcolor='rgba(0,0,0,0)',
-            font=dict(color='#e0e0e0')
+            font=dict(color='#5a0000')
         )
         st.plotly_chart(fig, use_container_width=True)
         
@@ -917,8 +1009,8 @@ elif menu == "📊 Model Performance":
 # Footer
 st.markdown("---")
 st.markdown("""
-    <div style='text-align: center; color: #718096; padding: 20px;'>
+    <div style='text-align: center; color: #8B0000; padding: 20px;'>
         <p>🏗️ <strong>Concrete Strength Predictor</strong> | Powered by Machine Learning</p>
-        <p style='font-size: 12px;'>© 2026 - Built with Streamlit & Python</p>
+        <p style='font-size: 14px;'> Copyrihgt © 2026 by Pengelola MK Praktikum Unggulan (Praktikum DGX), Universitas Gunadarma</p>
     </div>
 """, unsafe_allow_html=True)
